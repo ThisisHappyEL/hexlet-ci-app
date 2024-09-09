@@ -5,4 +5,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: make setup && make test && make lint
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies and run tests
+        run: |
+          npm install
+          npm run build
+          npm test
+
+      - name: Hello from Hexlet
+        uses: hexlet-components/hello-from-hexlet-action@release
